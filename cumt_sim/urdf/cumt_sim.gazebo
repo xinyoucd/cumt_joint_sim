@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<robot>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/cumt_sim</robotNamespace>
+      <legacyModeNS>true</legacyModeNS>
+      <controlPeriod>0.01</controlPeriod>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+
+  <!-- pedestal_link -->
+  <gazebo reference="driver_link">
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>50.0</updateRate>
+      <wheelSeparation>1.0</wheelSeparation>
+      <wheelDiameter>0.5</wheelDiameter>
+      <torque>1.0</torque>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <publishWheelTF>true</publishWheelTF>
+      <publishWheelJointState>true</publishWheelJointState>
+      <legecyMode>false</legecyMode>
+      <wheelAcceleration>1</wheelAcceleration>
+    </plugin>
+    <material>Gazebo/Black</material>
+    <gravity>true</gravity>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+
+  <!-- pedestal_link -->
+  <gazebo reference="pedestal_link">
+    <static>true</static>
+    <material>Gazebo/Gray</material>
+    <gravity>true</gravity>
+    <mu1>10</mu1>
+    <mu2>10</mu2>
+  </gazebo>
+
+  <!-- radar_link -->
+  <gazebo reference="radar_link">
+    <static>true</static>
+    <material>Gazebo/Black</material>
+    <gravity>true</gravity>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+  <!-- support_frame_link -->
+  <gazebo reference="support_frame_link">
+    <static>true</static>
+    <material>Gazebo/Gray</material>
+    <gravity>true</gravity>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+  <!-- wind_vane_link -->
+  <gazebo reference="wind_vane_link">
+    <static>true</static>
+    <material>Gazebo/Gray</material>
+    <gravity>true</gravity>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+    <fdir1>0 0 0</fdir1>
+  </gazebo>
+
+  <!-- base_link -->
+  <gazebo reference="base_link">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+  <!-- shoulder_Link -->
+  <gazebo reference="shoulder_Link">
+    <gravity>false</gravity>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+  <!-- upperArm_Link -->
+  <gazebo reference="upperArm_Link">
+    <gravity>false</gravity>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+  <!-- foreArm_Link -->
+  <gazebo reference="foreArm_Link">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+  <!-- wrist1_Link -->
+  <gazebo reference="wrist1_Link">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+  <!-- wrist2_Link -->
+  <gazebo reference="wrist2_Link">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+  <!-- wrist3_Link -->
+  <gazebo reference="wrist3_Link">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+</robot>

@@ -1,0 +1,2 @@
+cumt_sim:
+controller_joint_names: ['joint_pedestal', 'joint_radar','joint_support','joint_wind','shoulder_joint', 'upperArm_joint', 'foreArm_joint', 'wrist1_joint', 'wrist2_joint', 'wrist3_joint', ]

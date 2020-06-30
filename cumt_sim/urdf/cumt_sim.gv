@@ -1,0 +1,17 @@
+digraph G {
+node [shape=box];
+"driver_link" [label="driver_link"];
+"pedestal_link" [label="pedestal_link"];
+"radar_link" [label="radar_link"];
+"support_frame_link" [label="support_frame_link"];
+"wind_vane_link" [label="wind_vane_link"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"driver_link" -> "joint_pedestal" [label="xyz: 0.14294 -0.94142 0.12625 \nrpy: -3.14159 4.23516e-22 -1.5708"]
+"joint_pedestal" -> "pedestal_link"
+"driver_link" -> "joint_radar" [label="xyz: 0.35053 -0.94142 0.17935 \nrpy: 0 -1.5708 1.5708"]
+"joint_radar" -> "radar_link"
+"driver_link" -> "joint_support" [label="xyz: -0.36101 -0.75042 0.19625 \nrpy: -1.5708 -0 -1.5708"]
+"joint_support" -> "support_frame_link"
+"support_frame_link" -> "joint_wind" [label="xyz: 0.022 -0.41 -0.01 \nrpy: 1.5708 -4.23516e-22 -3.14159"]
+"joint_wind" -> "wind_vane_link"
+}

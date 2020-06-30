@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<robot>
+
+  <!-- pedestal_link -->
+  <gazebo reference="driver_link">
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <!-- Plugin update rate in Hz -->
+      <updateRate>50</updateRate>
+      <!-- Name of left joint, defaults to `left_joint` -->
+      <leftJoint>base_link_left_wheel_joint</leftJoint>
+      <!-- Name of right joint, defaults to `right_joint` -->
+      <rightJoint>base_link_right_wheel_joint</rightJoint>
+      <!-- The distance from the center of one wheel to the other, in meters, defaults to 0.34 m -->
+      <wheelSeparation>0.5380</wheelSeparation>
+      <!-- Diameter of the wheels, in meters, defaults to 0.15 m -->
+      <wheelDiameter>0.2410</wheelDiameter>
+      <!-- Wheel acceleration, in rad/s^2, defaults to 0.0 rad/s^2 -->
+      <wheelAcceleration>1.0</wheelAcceleration>
+      <!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
+      <wheelTorque>20</wheelTorque>
+      <!-- Topic to receive geometry_msgs/Twist message commands, defaults to `cmd_vel` -->
+      <commandTopic>cmd_vel</commandTopic>
+      <!-- Topic to publish nav_msgs/Odometry messages, defaults to `odom` -->
+      <odometryTopic>odom</odometryTopic>
+      <!-- Odometry frame, defaults to `odom` -->
+      <odometryFrame>odom</odometryFrame>
+      <!-- Robot frame to calculate odometry from, defaults to `base_footprint` -->
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+      <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
+      <odometrySource>1</odometrySource>
+      <!-- Set to true to publish transforms for the wheel links, defaults to false -->
+      <publishWheelTF>true</publishWheelTF>
+      <!-- Set to true to publish transforms for the odometry, defaults to true -->
+      <publishOdom>true</publishOdom>
+      <!-- Set to true to publish sensor_msgs/JointState on /joint_states for the wheel joints, defaults to false -->
+      <publishWheelJointState>true</publishWheelJointState>
+      <!-- Set to true to swap right and left wheels, defaults to true -->
+      <legacyMode>false</legacyMode>
+    </plugin>
+    <material>Gazebo/Black</material>
+    <gravity>true</gravity>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <fdir1>0 0 0</fdir1>
+  </gazebo>
+
+
+  <!-- pedestal_link -->
+  <gazebo reference="pedestal_link">
+    <static>true</static>
+    <material>Gazebo/Gray</material>
+    <gravity>true</gravity>
+    <mu1>10</mu1>
+    <mu2>10</mu2>
+    <fdir1>0 0 0</fdir1>
+  </gazebo>
+
+  <!-- radar_link -->
+  <gazebo reference="radar_link">
+    <static>true</static>
+    <material>Gazebo/Black</material>
+    <gravity>true</gravity>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+    <fdir1>0 0 0</fdir1>
+  </gazebo>
+
+  <!-- support_frame_link -->
+  <gazebo reference="support_frame_link">
+    <static>true</static>
+    <gravity>true</gravity>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+    <fdir1>0 0 0</fdir1>
+  </gazebo>
+
+  <!-- wind_vane_link -->
+  <gazebo reference="wind_vane_link">
+    <static>true</static>
+    <gravity>true</gravity>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+    <fdir1>0 0 0</fdir1>
+  </gazebo>
+  
+  <!-- base_link -->
+  <gazebo reference="base_link">
+  <gravity>false</gravity>
+    <implicitSpringDamper>true</implicitSpringDamper>
+    <springReference>1000</springReference>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+  <!-- shoulder_Link -->
+  <gazebo reference="shoulder_Link">
+   <gravity>false</gravity>
+    <implicitSpringDamper>true</implicitSpringDamper>
+    <springReference>1000</springReference>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+  <!-- upperArm_Link -->
+  <gazebo reference="upperArm_Link">
+   <gravity>false</gravity>
+    <implicitSpringDamper>true</implicitSpringDamper>
+    <springReference>1000</springReference>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+  <!-- foreArm_Link -->
+  <gazebo reference="foreArm_Link">
+    <implicitSpringDamper>true</implicitSpringDamper>
+    <springReference>1000</springReference>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+  <!-- wrist1_Link -->
+  <gazebo reference="wrist1_Link">
+   <gravity>false</gravity>
+    <implicitSpringDamper>true</implicitSpringDamper>
+    <springReference>1000</springReference>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+  <!-- wrist2_Link -->
+  <gazebo reference="wrist2_Link">
+   <gravity>false</gravity>
+    <implicitSpringDamper>true</implicitSpringDamper>
+    <springReference>1000</springReference>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+  <!-- wrist3_Link -->
+  <gazebo reference="wrist3_Link">
+   <gravity>false</gravity>
+    <implicitSpringDamper>true</implicitSpringDamper>
+    <springReference>1000</springReference>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+</robot>

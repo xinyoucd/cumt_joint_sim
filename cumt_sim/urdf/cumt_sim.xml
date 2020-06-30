@@ -1,0 +1,489 @@
+<?xml version="1.0" ?>
+<robot name="rrbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/cumt_sim</robotNamespace>
+      <legacyModeNS>true</legacyModeNS>
+      <controlPeriod>0.01</controlPeriod>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+  <gazebo reference="driver_link">
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>50.0</updateRate>
+      <wheelSeparation>1.0</wheelSeparation>
+      <wheelDiameter>0.5</wheelDiameter>
+      <torque>1.0</torque>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <publishWheelTF>true</publishWheelTF>
+      <publishWheelJointState>true</publishWheelJointState>
+      <legecyMode>false</legecyMode>
+      <wheelAcceleration>1</wheelAcceleration>
+    </plugin>
+    <material>Gazebo/Black</material>
+    <gravity>true</gravity>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+  <gazebo reference="pedestal_link">
+    <static>true</static>
+    <material>Gazebo/Gray</material>
+    <gravity>true</gravity>
+    <mu1>10</mu1>
+    <mu2>10</mu2>
+  </gazebo>
+  <gazebo reference="radar_link">
+    <static>true</static>
+    <material>Gazebo/Black</material>
+    <gravity>true</gravity>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+  <gazebo reference="support_frame_link">
+    <static>true</static>
+    <material>Gazebo/Gray</material>
+    <gravity>true</gravity>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+  <gazebo reference="wind_vane_link">
+    <static>true</static>
+    <material>Gazebo/Gray</material>
+    <gravity>true</gravity>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+    <fdir1>0 0 0</fdir1>
+  </gazebo>
+  <gazebo reference="base_link">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+  <gazebo reference="shoulder_Link">
+    <gravity>false</gravity>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+  <gazebo reference="upperArm_Link">
+    <gravity>false</gravity>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+  <gazebo reference="foreArm_Link">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+  <gazebo reference="wrist1_Link">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+  <gazebo reference="wrist2_Link">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+  <gazebo reference="wrist3_Link">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+  <link name="driver_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.061599 -0.012167 0.93931"/>
+      <mass value="60"/>
+      <inertia ixx="0.22072" ixy="0.0081487" ixz="6.2197E-05" iyy="0.87234" iyz="2.2323E-05" izz="0.85083"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/driver_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/driver_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="pedestal_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.00082891 0.076988 -0.12077"/>
+      <mass value="320.608"/>
+      <inertia ixx="0.41117" ixy="0.0019201" ixz="2.7803E-05" iyy="0.32318" iyz="-0.0047287" izz="0.56696"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/pedestal_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/pedestal_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_pedestal" type="fixed">
+    <origin rpy="3.1416 0 -1.5708" xyz="0.14294 -0.94142 0.12625"/>
+    <parent link="driver_link"/>
+    <child link="pedestal_link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="radar_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0072999 0.034643 -2.1454E-05"/>
+      <mass value="0.19987"/>
+      <inertia ixx="9.1702E-05" ixy="2.4253E-06" ixz="-4.7658E-08" iyy="0.00013913" iyz="2.6368E-08" izz="0.00013674"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/radar_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/radar_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_radar" type="prismatic">
+    <origin rpy="1.5708 -1.5708 0" xyz="0.35053 -0.94142 0.17935"/>
+    <parent link="driver_link"/>
+    <child link="radar_link"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="0" lower="0" upper="0" velocity="0"/>
+  </joint>
+  <link name="support_frame_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.19082 -0.1855 -0.031733"/>
+      <mass value="2.777"/>
+      <inertia ixx="0.0092666" ixy="-3.3233E-05" ixz="-5.3313E-05" iyy="0.022884" iyz="-0.00011602" izz="0.030287"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/support_frame_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/support_frame_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_support" type="fixed">
+    <origin rpy="-1.5708 0 -1.5708" xyz="-0.36101 -0.75042 0.19625"/>
+    <parent link="driver_link"/>
+    <child link="support_frame_link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="wind_vane_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.00011751 -0.0012894 -0.066592"/>
+      <mass value="0.43202"/>
+      <inertia ixx="0.00078551" ixy="-7.2051E-06" ixz="4.5677E-07" iyy="0.0007482" iyz="1.5672E-05" izz="0.00023174"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/wind_vane_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/wind_vane_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_wind" type="fixed">
+    <origin rpy="1.5708 0 3.1416" xyz="0.022 -0.41 -0.01"/>
+    <parent link="support_frame_link"/>
+    <child link="wind_vane_link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-1.4795E-13 0.0015384 0.020951" rpy="0 0 0" />
+      <mass value="0.83419" />
+      <inertia ixx="0.0014414" ixy="7.8809E-15" ixz="8.5328E-16" iyy="0.0013542" iyz="-1.4364E-05" izz="0.0024659" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/aubo_i5/visual/base_link.DAE" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/aubo_i5/collision/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="shoulder_Link">
+    <inertial>
+      <origin xyz="3.2508868974735E-07 0.00534955349296065 -0.00883689325611056" rpy="0 0 0" />
+      <mass value="1.57658348693929" />
+      <inertia ixx="0.0040640448663128" ixy="0" ixz="0" iyy="0.00392863238466817" iyz="-0.000160151642851425" izz="0.0030869857349184" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/aubo_i5/visual/shoulder_Link.DAE" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/aubo_i5/collision/shoulder_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="shoulder_joint" type="revolute">
+    <origin xyz="0 0 0.122" rpy="0 0 3.1416" />
+    <parent link="base_link" />
+    <child link="shoulder_Link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.05" upper="3.05" effort="0" velocity="0" />
+  </joint>
+  <link name="upperArm_Link">
+    <inertial>
+      <origin xyz="0.203996646979614 2.01304585036544E-10 0.0127641545395984" rpy="0 0 0" />
+      <mass value="4.04175782265494" />
+      <inertia ixx="0.00965399211106204" ixy="0" ixz="0" iyy="0.144993869035655" iyz="0" izz="0.142607184038966" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/aubo_i5/visual/upperArm_Link.DAE" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/aubo_i5/collision/upperArm_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="upperArm_joint" type="revolute">
+    <origin xyz="0 0.1215 0" rpy="-1.5708 -1.5708 0" />
+    <parent link="shoulder_Link" />
+    <child link="upperArm_Link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.05" upper="3.05" effort="0" velocity="0" />
+  </joint>
+  <link name="foreArm_Link">
+    <inertial>
+      <origin xyz="0.188922115560337 6.78882434739072E-07 0.0981026740461557" rpy="0 0 0" />
+      <mass value="2.27145669098343" />
+      <inertia ixx="0.00214322284946289" ixy="0" ixz="-0.00073120631553383" iyy="0.0443926090878205" iyz="0" izz="0.0441273797128365" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/aubo_i5/visual/foreArm_Link.DAE" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/aubo_i5/collision/foreArm_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="foreArm_joint" type="revolute">
+    <origin xyz="0.408 0 0" rpy="-3.1416 -5.1632E-18 -5.459E-16" />
+    <parent link="upperArm_Link" />
+    <child link="foreArm_Link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.05" upper="3.05" effort="0" velocity="0" />
+  </joint>
+  <link name="wrist1_Link">
+    <inertial>
+      <origin xyz="7.54205137428592E-07 0.0062481254331257 -0.00392367464072373" rpy="0 0 0" />
+      <mass value="0.500477539188764" />
+      <inertia ixx="0.00071194605962081" ixy="0" ixz="0" iyy="0.00040588242872958" iyz="-2.30808694377512E-05" izz="0.000685574004861334" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/aubo_i5/visual/wrist1_Link.DAE" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/aubo_i5/collision/wrist1_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wrist1_joint" type="revolute">
+    <origin xyz="0.376 0 0" rpy="3.1416 -1.8323E-15 1.5708" />
+    <parent link="foreArm_Link" />
+    <child link="wrist1_Link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.05" upper="3.05" effort="0" velocity="0" />
+  </joint>
+  <link name="wrist2_Link">
+    <inertial>
+      <origin xyz="-7.54207620578635E-07 -0.00624812542617262 -0.00392367464115684" rpy="0 0 0" />
+      <mass value="0.500477539245988" />
+      <inertia ixx="0.00071194605981829" ixy="0" ixz="0" iyy="0.000405882428755442" iyz="2.30808694515886E-05" izz="0.000685574005112107" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/aubo_i5/visual/wrist2_Link.DAE" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/aubo_i5/collision/wrist2_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wrist2_joint" type="revolute">
+    <origin xyz="0 0.1025 0" rpy="-1.5708 -1.8709E-15 -1.6653E-16" />
+    <parent link="wrist1_Link" />
+    <child link="wrist2_Link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.05" upper="3.05" effort="0" velocity="0" />
+  </joint>
+  <link name="wrist3_Link">
+    <inertial>
+      <origin xyz="3.92048778449938E-10 0.000175788057281467 -0.0213294490706684" rpy="0 0 0" />
+      <mass value="0.158309554874285" />
+      <inertia ixx="7.31376196034769E-05" ixy="0" ixz="0" iyy="7.19528188876563E-05" iyz="0" izz="0.000108772439051422" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/aubo_i5/visual/wrist3_Link.DAE" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cumt_sim/meshes/aubo_i5/collision/wrist3_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wrist3_joint" type="revolute">
+    <origin xyz="0 -0.094 0" rpy="1.5708 0 1.7907E-15" />
+    <parent link="wrist2_Link" />
+    <child link="wrist3_Link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.05" upper="3.05" effort="0" velocity="0" />
+  </joint>
+  <joint name="world_joint" type="fixed">
+    <parent link="pedestal_link" />
+    <child link = "base_link" />
+    <origin xyz="0.0 -0.031 -0.23" rpy="-3.14 0.0 1.57" />
+    <dynamics damping="100" friction="100"/>
+  </joint>
+  <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="shoulder_joint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="upperArm_joint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor2">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="tran3">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="foreArm_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor3">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="tran4">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wrist1_joint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor4">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="tran5">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wrist2_joint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor5">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="tran6">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wrist3_joint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor6">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+</robot>
