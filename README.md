@@ -14,11 +14,7 @@
 
 <img src="/cumt_sim/image_view/CUMT.png" width="400" height="300" />
 
-<center> CUMT </center>
-
 <img src="/cumt_sim/image_view/sun_2.jpg" width="800" height="150" />
-
-<center>Sunspeed_Robotics</center>
 
 </h1>
 
