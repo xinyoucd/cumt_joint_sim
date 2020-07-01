@@ -54,19 +54,19 @@
 - Robot_image_view
   - **Bufflo-robot-view**
   
-  <center>
+<h1 align=center>
 
   <img src="/cumt_sim/image_view/bufflo.png" width="400" height="350" />
 
-  </center>
+ </h1>
 
   - **Aubo_robot_view**
 
-<center>
+<h1 align=center>
 
   <img src="/cumt_sim/image_view/aubo_robotics.jpg" width="400" height="350" />
 
-</center>
+</h1>
 
 <center>
 
@@ -135,7 +135,9 @@
 - System version:
   - ubuntu 16.04 (Xenial Xerus)
 
-<center><img src="/cumt_sim/image_view/11.jpeg" width="300" height="180" /></center>
+<h1 align=center>
+<img src="/cumt_sim/image_view/11.jpeg" width="300" height="180" />
+</h1>
 
 <center>
 
@@ -147,7 +149,11 @@
   - rosdistro: kinetic
   - rosversion: 1.12.14
 
-<center><img src="/cumt_sim/image_view/kinetic.png" width="400" height="350" /></center>
+<h1 align=center>
+
+<img src="/cumt_sim/image_view/kinetic.png" width="400" height="350" />
+
+</h1>
 
 <center>
 
