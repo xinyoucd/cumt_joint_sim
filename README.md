@@ -92,17 +92,7 @@
 
 <center>
 
-```mermaid
-graph TD
-A[driver_link]-->B1(joint_pedestal)
-A[driver_link]-->B2(joint_radar)
-A[driver_link]-->B3(joint_pedestal)
-B1(joint_pedestal)-->C1[pedestal_link]
-B2(joint_radar)-->C2[radar_link]
-B3(joint_support)-->C3[support_frame_link]
-C3[support_frame_link]-->D(joint_wind)
-D(joint_wind)-->E[wind_vane_link]
-```
+<img src="/cumt_sim/image_view/link_tree.png">
 
 </center>
 
@@ -132,11 +122,7 @@ D(joint_wind)-->E[wind_vane_link]
     - <http://wiki.ros.org/aubo_robot>
     - <https://github.com/lg609/aubo_robot>
 
-<center>
-
-<img src="/cumt_sim/image_view/title_3.png" width= "1000" height="60" />
-
-</center>
+<center><img src="/cumt_sim/image_view/title_3.png" width= "1000" height="60" /></center>
 
 <center>
 
@@ -153,11 +139,7 @@ D(joint_wind)-->E[wind_vane_link]
 - System version:
   - ubuntu 16.04 (Xenial Xerus)
 
-<center>
-
-<img src="/cumt_sim/image_view/11.jpeg" width="300" height="180" />
-
-</center>
+<center><img src="/cumt_sim/image_view/11.jpeg" width="300" height="180" /></center>
 
 <center>
 
@@ -169,11 +151,7 @@ D(joint_wind)-->E[wind_vane_link]
   - rosdistro: kinetic
   - rosversion: 1.12.14
 
-<center>
-
-<img src="/cumt_sim/image_view/kinetic.png" width="400" height="350" />
-
-</center>
+<center><img src="/cumt_sim/image_view/kinetic.png" width="400" height="350" /></center>
 
 <center>
 
