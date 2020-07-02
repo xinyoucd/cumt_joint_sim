@@ -92,11 +92,7 @@
 
 </center>
 
-<center>
-
-**Bufflo_robot_link_description**
-
-</center>
+<h1 align=center> Bufflo_robot_link_description </h1>
 
 - **Robot-Description**
   - **General Description:**
